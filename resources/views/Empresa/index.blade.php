@@ -39,15 +39,11 @@
                     <tr>
                         <th class="align-middle" scope="row">{{ $int }}</th>
                         <td class="align-middle">{{ $itemempresa->emp_ruc }}</td>
-                        <td class="align-middle"><a
-                                href=""
-                                class="link-dark">{{ $itemempresa->emp_nombre }}</a></td>
+                        <td class="align-middle"><a href="" class="link-dark">{{ $itemempresa->emp_nombre }}</a></td>
                         <td class="align-middle">{{ $itemempresa->emp_direccion }}</td>
                         <td class="align-middle">
-                            <a href="" class="btn btn-info btn-sm"><i
-                                    class="fas fa-edit"> </i>Editar</a>
-                            <a href="" class="btn btn-danger btn-sm"><i
-                                    class="fas fa-trash-alt"></i>Eliminar</a>
+                            <a href="{{route('empresa.edit',$itemempresa->emp_ruc)}}" class="btn btn-info btn-sm"><i class="fa fa-edit"> </i>Editar</a>
+                            <a href="{{route('empresa.show',$itemempresa->emp_ruc)}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Eliminar</a>
                         </td>
                     </tr>
                     @php
