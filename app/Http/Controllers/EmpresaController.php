@@ -44,7 +44,7 @@ class EmpresaController extends Controller
         [
             'nombre.required'=>'Ingrese nombre de la empresa',
             'RUC.required'=>'Ingrese RUC',
-            'RUC.size'=>'Ingrese RUC completo',
+            'RUC.size'=>'RUC incorrecto, debe tener 11 digitos',
             'direccion.required'=>'Ingrese Direccion'            
         ]);
         $empresa = new Empresa();
@@ -64,7 +64,8 @@ class EmpresaController extends Controller
      */
     public function show($id)
     {
-        //
+        $empresa=Empresa::findOrFail($id);
+        return view('empresa.confirmar',compact('empresa'));
     }
 
     /**
@@ -75,7 +76,8 @@ class EmpresaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $empresa=Empresa::findOrFail($id);
+        return view('empresa.edit',compact('empresa'));
     }
 
     /**
@@ -87,7 +89,23 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data=request()->validate([
+            'nombre'=>'required',
+            'RUC'=>['required','size:11'],
+            'direccion' => 'required'
+        ],
+        [
+            'nombre.required'=>'Ingrese nombre de la empresa',
+            'RUC.required'=>'Ingrese RUC',
+            'RUC.size'=>'RUC incorrecto, debe tener 11 digitos',
+            'direccion.required'=>'Ingrese Direccion'            
+        ]);
+        $empresa=Empresa::findOrFail($id);
+        $empresa->emp_ruc=$request->RUC;
+        $empresa->emp_nombre=$request->nombre;
+        $empresa->emp_direccion=$request->direccion;
+        $empresa->save();
+        return redirect()->route('empresa.index')->with('datos','Empresa editada!');
     }
 
     /**
@@ -98,6 +116,9 @@ class EmpresaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $empresa=Empresa::findOrFail($id);
+        $empresa->emp_estado='0';
+        $empresa->save();
+        return redirect()->route('empresa.index')->with('datos','Empresa eliminada...!');
     }
 }
