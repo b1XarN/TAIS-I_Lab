@@ -14,5 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+    return view('plantilla');
 });
+Route::resource('empresa','EmpresaController');
+Route::get('cancelarempresa', function(){
+    return redirect()->route('empresa.index')->with('datos','Accion Cancelada');
+})->name('cancelarempresa');
