@@ -8,6 +8,7 @@ use App\Empresa;
 use App\Proceso;
 use App\Subproceso;
 use App\Indicador;
+use App\Iniciativa;
 
 class IndicadorController extends Controller
 {
@@ -163,7 +164,9 @@ class IndicadorController extends Controller
     }
 
     public function tablero($id){
-        return view('reportes.tablero');
+        $indicador=Indicador::findOrFail($id);
+        $iniciativa=Iniciativa::where('ind_id','=',$id)->get();
+        return view('reportes.tablero', compact('indicador', 'iniciativa'));
     }
 
 }

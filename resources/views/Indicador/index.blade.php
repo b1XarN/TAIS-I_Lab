@@ -47,7 +47,7 @@
                     <tr>
                         <th class="align-middle table-light text-center" scope="row">{{ $int }}</th>
                         <td class="align-middle table-light text-break">{{ $item->Subproceso->sub_nombre }}</td>
-                        <td class="align-middle table-light text-break">{{ $item->ind_nombre }}</td>
+                        <td class="align-middle table-light text-break"><a href="{{ route('indicador.tablero', $item->ind_id)}}">{{ $item->ind_nombre }}</a></td>
                         <td class="align-middle table-light text-break">{{ $item->ind_responsable }}</td>
                         <td class="table-light">
                             <a href="{{ route('indicador.edit', $item->ind_id) }}" class="btn btn-info btn-sm"><i
