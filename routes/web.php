@@ -51,6 +51,8 @@ Route::get('indicadori/{indicador}','IndicadorController@index')->name('indicado
 Route::get('indicador/create/{indicador}','IndicadorController@create')->name('indicador.create');
 Route::post('indicador/{indicador}','IndicadorController@store')->name('indicador.store');
 Route::get('indicador/{indicador}/edit','IndicadorController@edit')->name('indicador.edit');
+Route::get('indicador/{id}','IndicadorController@matriz')->name('indicador.matriz');
+Route::get('indicadort/{id}','IndicadorController@tablero')->name('indicador.tablero');
 Route::put('indicador/{indicador}','IndicadorController@update')->name('indicador.update');
 Route::get('indicador/{indicador}','IndicadorController@show')->name('indicador.show');
 Route::delete('indicador/{indicador}','IndicadorController@destroy')->name('indicador.destroy');

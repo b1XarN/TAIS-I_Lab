@@ -44,6 +44,8 @@
               if (!isset($_SESSION['ruc'])) {
                 $_SESSION['ruc'] = "ninguno";
               }
+              $_SESSION['ruc'] = "20601847320";
+              
             @endphp
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
@@ -68,12 +70,12 @@
                       <li><a href="{{ route('subproceso.index', $_SESSION['ruc']) }}">Subprocesos</a></li>
                       <li><a href="{{ route('indicador.index', $_SESSION['ruc']) }}">Indicadores</a></li>
                       <li><a href="icons.html">Mapa estrategico</a></li>
-                      <li><a href="glyphicons.html">Tableros de control</a></li>
+                      <li><a href="{{ route('indicador.tablero', $_SESSION['ruc']) }}">Tableros de control</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-table"></i> Tables <span class="fa fa-chevron-down"></span></a>
+                  <li><a><i class="fa fa-table"></i> Reportes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="tables.html">Tables</a></li>
+                      <li><a href="{{ route('indicador.matriz', $_SESSION['ruc']) }}">Matriz de Indicadores</a></li>
                       <li><a href="tables_dynamic.html">Table Dynamic</a></li>
                     </ul>
                   </li>

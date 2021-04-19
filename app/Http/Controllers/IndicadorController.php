@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 use App\Empresa;
+use App\Proceso;
 use App\Subproceso;
 use App\Indicador;
 
@@ -122,4 +124,46 @@ class IndicadorController extends Controller
         $indicador->delete();
         return redirect()->route('indicador.index', $indicador->emp_ruc)->with('datos','Indicador eliminado');
     }
+
+    public function matriz($id){
+        $empresa = Empresa::findOrFail($id);
+        $proceso=Proceso::where('emp_ruc','=',$id)->get();
+        $subproceso=Subproceso::where('emp_ruc','=',$id)->get();
+        $indicador = Indicador::where('emp_ruc','=',$id)->get();
+        $partProceso = array();
+        $partSub = array();
+        foreach ($proceso as $item) {
+            $i=0;
+            foreach ($subproceso as $item2) {
+                if ($item2->pro_id==$item->pro_id) {
+                    $i=$i+1;
+                }
+            }
+            if ($i==0) {
+                $i=1;
+            }
+            $partProceso[]=$i;
+        }
+
+
+        foreach ($subproceso as $item) {
+            $i=0;
+            foreach ($indicador as $item2) {
+                if ($item2->sub_id==$item->sub_id) {
+                    $i=$i+1;
+                }
+            }
+            if ($i==0) {
+                $i=1;
+            }
+            $partSub[]=$i;
+        }
+
+        return view('reportes.matriz', compact('empresa', 'proceso', 'subproceso', 'indicador', 'partProceso', 'partSub'));
+    }
+
+    public function tablero($id){
+        return view('reportes.tablero');
+    }
+
 }

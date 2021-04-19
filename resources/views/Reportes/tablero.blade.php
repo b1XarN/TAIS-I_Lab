@@ -37,7 +37,6 @@
 
         var x = 220;
 
-        let texto = 'Alex gay';
 
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
@@ -49,15 +48,17 @@
         // c.fillRect(300,300,100,100);
 
         c.beginPath();
-        c.fillText(texto,250,300,1000);
+        c.font="18px Verdana";
+        c.fillText('Objetivo',253,275,1000);
         c.arc(70+x,300,60,0, Math.PI * 2, false);
-        c.strokeStyle = 'green';
+        c.strokeStyle = 'black';
         c.stroke();
 
         c.beginPath();
         c.arrow(130+x,300, 200+x, 300, [0, 1, -10, 1, -10, 5]);
         c.fill();
 
+        c.fillText('Indicador',460,275,1000);
         c.strokeRect(200+x,250,170,100);
 
         c.beginPath();
@@ -65,16 +66,30 @@
         c.fill();
 
         c.beginPath();
+        c.fillText('Meta',695,275,1000);
         c.arc(500+x,300,60,0, Math.PI * 2, false);
-        c.strokeStyle = 'green';
         c.stroke();
 
         c.beginPath();
         c.arrow(560+x,300, 600+x, 300, [0, 1, -10, 1, -10, 5]);
         c.fill();
 
+        c.fillText('Semaforo',860,265,1000);
         c.strokeRect(600+x,240,170,115);
+        c.beginPath();
+        c.arc(840,285,10,0, Math.PI * 2, false);
+        c.fillStyle = 'red';
+        c.fill();
+        c.beginPath();
+        c.arc(840,310,10,0, Math.PI * 2, false);
+        c.fillStyle = 'yellow';
+        c.fill();
+        c.beginPath();
+        c.arc(840,340,10,0, Math.PI * 2, false);
+        c.fillStyle = 'green';
+        c.fill();
 
+        c.fillStyle = "black";
         c.beginPath();
         c.arrow(240+x,400, 240+x, 350, [0, 1, -10, 1, -10, 5]);
         c.fill();
@@ -83,12 +98,16 @@
         c.arrow(490+x,400, 490+x, 360, [0, 1, -10, 1, -10, 5]);
         c.fill();
 
+
+        
+        c.fillText('Iniciativas',540,420,1000);
         c.strokeRect(170+x,400,410,115);
 
         c.beginPath();
         c.arrow(610+x,460, 580+x, 460, [0, 1, -10, 1, -10, 5]);
         c.fill();
 
+        c.fillText('Responsable',860,430,1000);
         c.strokeRect(610+x,410,170,100);
 
 
