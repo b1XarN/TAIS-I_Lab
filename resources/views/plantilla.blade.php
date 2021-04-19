@@ -66,7 +66,7 @@
                     <ul class="nav child_menu">
                       <li><a href="{{ route('proceso.show', $_SESSION['ruc']) }}">Procesos</a></li>
                       <li><a href="{{ route('subproceso.index', $_SESSION['ruc']) }}">Subprocesos</a></li>
-                      <li><a href="typography.html">Indicadores</a></li>
+                      <li><a href="{{ route('indicador.index', $_SESSION['ruc']) }}">Indicadores</a></li>
                       <li><a href="icons.html">Mapa estrategico</a></li>
                       <li><a href="glyphicons.html">Tableros de control</a></li>
                     </ul>
