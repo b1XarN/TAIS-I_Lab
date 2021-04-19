@@ -10,11 +10,11 @@
 
 @section('contenido')
     @php
-        session_start();
+    session_start();
 
     @endphp
     <div class="container">
-        <h1>Matriz de Indicadores: <?=$_SESSION['ruc']?></h1>
+        <h2 class="text-center text-uppercase">MATRIZ DE INDICADORES ({{ $empresa->emp_nombre }})</h2>
         <table class="table table-bordered">
             <thead>
                 <tr class="table-primary">
@@ -32,88 +32,96 @@
                 </tr>
             </thead>
             <tbody>
-                <!-- @php
-                    $i=0;
-                    $j=0;
+                @php
+                    $i = 0;
+                    $j = 0;
+                    $k = 0;
+                    $l = 0;
                 @endphp
-                @foreach($proceso as $proc)
-                    <tr>
-                        <td rowspan="{{$partProceso[$i]}}"  class="align-middle table-light text-center">{{$proc->pro_nombre}}</td>
-                        @foreach($subproceso as $sub)
-                            @if($proc->pro_id == $sub->pro_id)
-                                <td class="align-middle table-light text-center">{{$sub->sub_nombre}}</td>
-                                <td class="align-middle table-light text-center">{{$sub->sub_responsable}}</td>
-                                @php
-                                    echo $partSub[$j];
-                                    $j=$j+1;
-                                @endphp
-                                @foreach($indicador as $ind)
-                                    @if($sub->sub_id == $ind->sub_id)
-                                        <td class="align-middle table-light text-center">{{$ind->ind_id}}</td>
-                                        <td class="align-middle table-light text-center">{{$ind->ind_nombre}}</td>
-                                        <td class="align-middle table-light text-center">{{$ind->ind_unidad}}</td>
-                                        <td class="align-middle table-light text-center">{{$ind->ind_responsable}}</td>
-                                       
-                                    @endif
-                                @endforeach
-                            @endif
-                            
-                        @endforeach
-                    </tr>
+                @foreach ($proceso as $item)
                     @php
-                        $i=$i+1;
+                        $j = 0;
                     @endphp
-                @endforeach -->
-                <!-- <tr>
-                    <td rowspan="4">Gestion Administrativa</td>
-                    <td>Elaboracion del Plan de Trabajo</td>
-                    <td rowspan="3">Administrador</td>
-                    <td>1</td>
-                    <td>Rentabilidad ventas</td>
-                    <td>%</td>
-                    <td>Aministrador</td>
-                    
-                </tr>
-                <tr>
-                    <td>Gestion Administrativa</td>
-                    <td>Seguimiento procesos</td>
-                    <td rowspan="1">Administrador</td>
-                    <td>2</td>
-                    <td>Rentabilidad sobre los activos</td>
-                    <td>%</td>
-                    <td>Administrador</td>
-                </tr>
-                <tr>
-                    
-                    <td>Administrador</td>
-                    <td>3</td>
-                    <td>Rentabilidad compras</td>
-                    <td>%</td>
-                    <td>Administrador</td>
-                </tr>
-                <tr>
-                    <td>Gestion Administrativa</td>
-                    <td>Seguimiento procesos</td>
-                    <td>Administrador</td>
-                    <td>4</td>
-                    <td>Rentabilidad inversion</td>
-                    <td>%</td>
-                    <td>Administrador</td>
-                </tr> -->
-                <!-- <tr>
-                    <td>Seguimiento</td>
-                    <td>Administrador</td>
-                    <td>2</td>
-                    <td>Rentabilidad sobre los activos</td>
-                    <td>%</td>
-                    <td>Administrador</td>
-                </tr> -->
-                
+                    <tr>
+                        <td rowspan="{{ $partProceso[$i] }}">{{ $item->pro_nombre }}</td>
+                        @foreach ($subproceso as $item2)
+                            @php
+                                $l = 0;
+                            @endphp
+                            @if ($item2->pro_id == $proceso[$i]->pro_id)
+                                @if ($j == 0)
+                                    <td rowspan="{{$partSub[$k]}}">{{ $item2->sub_nombre }}</td>
+                                    <td rowspan="{{$partSub[$k]}}">{{ $item2->sub_responsable }}</td>
+                                    @php
+                                        $j=1;
+                                    @endphp
+                                    @foreach($indicador as $item3)
+                                        @if ($item3->sub_id==$subproceso[$k]->sub_id)
+                                            @if ($l==0)
+                                                <td>{{$item3->ind_id}}</td>
+                                                <td>{{$item3->ind_nombre}}</td>
+                                                <td>{{$item3->ind_unidad}}</td>
+                                                <td>{{$item3->ind_responsable}}</td></tr>
+                                                @php
+                                                    $l=1;
+                                                @endphp
+                                            @else
+                                                <tr>
+                                                    <td>{{$item3->ind_id}}</td>
+                                                    <td>{{$item3->ind_nombre}}</td>
+                                                    <td>{{$item3->ind_unidad}}</td>
+                                                    <td>{{$item3->ind_responsable}}</td>
+                                                </tr>
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                    @if ($l==0)
+                                        <td></td><td></td><td></td><td></td></tr>
+                                    @endif
+                                    
+                                @else
+                                    <tr>
+                                        <td rowspan="{{$partSub[$k]}}">{{ $item2->sub_nombre }}</td>
+                                        <td rowspan="{{$partSub[$k]}}">{{ $item2->sub_responsable }}</td>
+                                        @foreach($indicador as $item3)
+                                            @if ($item3->sub_id==$subproceso[$k]->sub_id)
+                                                @if ($l==0)
+                                                    <td>{{$item3->ind_id}}</td>
+                                                    <td>{{$item3->ind_nombre}}</td>
+                                                    <td>{{$item3->ind_unidad}}</td>
+                                                    <td>{{$item3->ind_responsable}}</td></tr>
+                                                    @php
+                                                        $l=1;
+                                                    @endphp
+                                                @else
+                                                    <tr>
+                                                        <td>{{$item3->ind_id}}</td>
+                                                        <td>{{$item3->ind_nombre}}</td>
+                                                        <td>{{$item3->ind_unidad}}</td>
+                                                        <td>{{$item3->ind_responsable}}</td>
+                                                    </tr>
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                        @if ($l==0)
+                                            <td></td><td></td><td></td><td></td></tr>
+                                        @endif      
+                                @endif
+                                @php
+                                    $k++;
+                                @endphp
+                            @endif
+                        @endforeach
+                        @if ($j==0)
+                            <td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        @endif                                
+                    @php
+                        $i++;
+                    @endphp
+                @endforeach
             </tbody>
         </table>
-        
     </div>
-
 @endsection
 
 @section('scripts')

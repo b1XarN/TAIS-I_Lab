@@ -127,7 +127,7 @@ class IndicadorController extends Controller
     }
 
     public function matriz($id){
-        $empresa = Empresa::findOrFail($id);
+        /*$empresa = Empresa::findOrFail($id);
         $proceso=Proceso::where('emp_ruc','=',$id)->get();
         $subproceso=Subproceso::where('emp_ruc','=',$id)->get();
         $indicador = Indicador::where('emp_ruc','=',$id)->get();
@@ -159,7 +159,65 @@ class IndicadorController extends Controller
             }
             $partSub[]=$i;
         }
+        return view('reportes.matriz', compact('empresa', 'proceso', 'subproceso', 'indicador', 'partProceso', 'partSub'));*/
 
+        $empresa = Empresa::findOrFail($id);
+        $proceso=Proceso::where('emp_ruc','=',$id)->get();
+        $subproceso=Subproceso::where('emp_ruc','=',$id)->get();
+        $indicador = Indicador::where('emp_ruc','=',$id)->get();
+        $partProceso = array();
+        $partSub = array();
+        /*$cantProc = array();
+        foreach ($proceso as $item) {
+            $i=0;
+            foreach ($subproceso as $item2) {
+                if ($item2->pro_id==$item->pro_id) {
+                    $i=$i+1;
+                }
+            }
+            if ($i==0) {
+                $i=1;
+            }
+            $partProceso[]=$i;
+        }*/
+
+
+        foreach ($subproceso as $item) {
+            $i=0;
+            foreach ($indicador as $item2) {
+                if ($item2->sub_id==$item->sub_id) {
+                    $i=$i+1;
+                }
+            }
+            if ($i==0) {
+                $i=1;
+            }
+            $partSub[]=$i;
+        }
+        foreach ($proceso as $item) {
+            $prueba=DB::table('proceso as p')
+                ->join('subproceso as s','s.pro_id','=','p.pro_id')
+                ->join('indicador as i','i.sub_id','=','s.sub_id')
+                ->where('p.pro_id','=',$item->pro_id)
+                ->select(DB::raw('count(*) as cantidad'))
+                ->first();
+            if ($prueba->cantidad === 0) {
+                $prueba=DB::table('proceso as p')
+                    ->join('subproceso as s','s.pro_id','=','p.pro_id')
+                    ->where('p.pro_id','=',$item->pro_id)
+                    ->select(DB::raw('count(*) as cantidad'))
+                    ->first();
+                if ($prueba->cantidad === 0) {
+                    $partProceso[]=1;
+                }
+                else{
+                    $partProceso[]=$prueba->cantidad;
+                }
+            }
+            else{
+                $partProceso[]=$prueba->cantidad;
+            }
+        }
         return view('reportes.matriz', compact('empresa', 'proceso', 'subproceso', 'indicador', 'partProceso', 'partSub'));
     }
 

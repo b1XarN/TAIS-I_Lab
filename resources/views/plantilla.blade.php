@@ -44,7 +44,7 @@
               if (!isset($_SESSION['ruc'])) {
                 $_SESSION['ruc'] = "ninguno";
               }
-              $_SESSION['ruc'] = "20601847320";
+              //$_SESSION['ruc'] = "ninguno";
               
             @endphp
             <!-- sidebar menu -->
