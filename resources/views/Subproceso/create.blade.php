@@ -25,43 +25,51 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form method="POST" action="{{ route('subproceso.store', 12345678901) }}" id="demo-form2" data-parsley-validate
-                        class="form-horizontal form-label-left">
+                    <form method="POST" action="{{ route('subproceso.store', $_SESSION['ruc']) }}" id="demo-form2"
+                        data-parsley-validate class="form-horizontal form-label-left">
                         @csrf
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 col-lg-2 label-align"
-                                for="last-name">Proceso <span class="required">*</span>
+                            <label class="col-form-label col-md-3 col-sm-3 col-lg-2 label-align" for="last-name">Proceso
+                                <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-lg-8">
                                 <select id="proceso" name="proceso" class="form-control" required>
-                                    <option value="1">xd</option>
+                                    @foreach ($proceso as $item)
+                                        @if ($item === reset($proceso))
+                                            <option selected value="{{ $item->pro_id }}">{{ $item->pro_nombre }}
+                                            </option>
+                                        @endif
+                                        <option value="{{ $item->pro_id }}">{{ $item->pro_nombre }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 col-lg-2 label-align" for="first-name">Descripción
+                            <label class="col-form-label col-md-3 col-sm-3 col-lg-2 label-align"
+                                for="first-name">Descripción
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-lg-8">
-                                <input type="text" id="descripcion" name="descripcion" required="descripcion" class="form-control"
-                                    value="{{ old('descripcion') }}">
+                                <input type="text" id="descripcion" name="descripcion" required="descripcion"
+                                    class="form-control" value="{{ old('descripcion') }}">
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 col-lg-2 label-align" for="first-name">Responsable
+                            <label class="col-form-label col-md-3 col-sm-3 col-lg-2 label-align"
+                                for="first-name">Responsable
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-lg-8">
-                                <input type="text" id="responsable" name="responsable" required="responsable" class="form-control"
-                                    value="{{ old('responsable') }}">
+                                <input type="text" id="responsable" name="responsable" required="responsable"
+                                    class="form-control" value="{{ old('responsable') }}">
                             </div>
                         </div>
                         <div class="ln_solid"></div>
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
                                 <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Registrar</button>
-                                <a href="{{ route('cancelasubproceso', 12345678901) }}" class="btn btn-primary" type="button"><i
-                                        class="fa fa-ban"></i> Cancelar</a>
+                                <a href="{{ route('cancelasubproceso', $_SESSION['ruc']) }}" class="btn btn-primary"
+                                    type="button"><i class="fa fa-ban"></i> Cancelar</a>
                             </div>
                         </div>
                     </form>

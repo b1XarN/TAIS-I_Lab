@@ -19,9 +19,9 @@ class SubprocesoController extends Controller
 
     public function index(Request $request, $ruc)
     {
-        /*if (strcmp($ruc,"ninguno") === 0) {
+        if (strcmp($ruc,"ninguno") === 0) {
             return redirect()->route('empresa.index')->with('datos','Elija una empresa para trabajar');
-        }*/
+        }
         $buscarpor=$request->get('buscarpor');
         $subproceso=Subproceso::where('emp_ruc','=',$ruc)->where('sub_nombre','like','%'.$buscarpor.'%')->paginate($this::PAGINACION);
         return view('subproceso.index', compact('subproceso','buscarpor'));
@@ -35,7 +35,8 @@ class SubprocesoController extends Controller
     public function create($ruc)
     {
         $empresa=Empresa::findOrFail($ruc);
-        return view('subproceso.create',compact('empresa'));
+        $proceso=Proceso::where('emp_ruc','=',$ruc)->get();
+        return view('subproceso.create',compact('empresa','proceso'));
     }
 
     /**
@@ -76,8 +77,8 @@ class SubprocesoController extends Controller
     public function edit($id)
     {
         $subproceso=Subproceso::findOrFail($id);
-        //$proceso=Proceso::where('emp_ruc','=',$subproceso->emp_ruc)->get();
-        return view('subproceso.edit', compact('subproceso'));
+        $proceso=Proceso::where('emp_ruc','=',$subproceso->emp_ruc)->get();
+        return view('subproceso.edit', compact('subproceso','proceso'));
     }
 
     /**

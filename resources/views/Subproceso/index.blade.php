@@ -14,11 +14,11 @@
     @endphp
     <div class="container">
         <h2 class="text-center fs-3 fw-bolder">LISTA DE SUBPROCESOS</h2>
-        <a href="{{ route('subproceso.create', 12345678901) }}" class="btn btn-primary"><i class="fa fa-plus-square-o"></i> Nuevo Registro</a>
+        <a href="{{ route('subproceso.create', $_SESSION['ruc']) }}" class="btn btn-primary"><i class="fa fa-plus-square-o"></i> Nuevo Registro</a>
         <form class="d-flex float-right">
-            <input name="buscarpor1" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"
+            <input name="buscarpor" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"
                 value="{{ $buscarpor }}">
-            <button name="buscar1" class="btn btn-success" type="submit" value="buscar">Buscar</button>
+            <button name="buscar" class="btn btn-success" type="submit" value="buscar">Buscar</button>
         </form>
         @if (session('datos'))
             <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
@@ -32,9 +32,9 @@
             <thead>
                 <tr class="table-primary">
                     <th scope="col" class="text-center" style="width: 10px;">N°</th>
-                    <th scope="col">Descripción</th>
-                    <th scope="col">Responsable</th>
-                    <th scope="col">Opciones</th>
+                    <th scope="col" class="text-center">Descripción</th>
+                    <th scope="col" class="text-center">Responsable</th>
+                    <th scope="col" class="text-center" style="width: 200px;">Opciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,10 +43,10 @@
                 @endphp
                 @foreach ($subproceso as $item)
                     <tr>
-                        <th class="align-middle" scope="row">{{ $int }}</th>
-                        <td class="align-middle">{{ $item->sub_nombre }}</td>
-                        <td class="align-middle">{{ $item->sub_responsable }}</td>
-                        <td class="align-middle">
+                        <th class="align-middle table-light text-center" scope="row">{{ $int }}</th>
+                        <td class="align-middle table-light text-break">{{ $item->sub_nombre }}</td>
+                        <td class="align-middle table-light text-break">{{ $item->sub_responsable }}</td>
+                        <td class="table-light">
                             <a href="{{ route('subproceso.edit', $item->sub_id) }}" class="btn btn-info btn-sm"><i
                                     class="fa fa-edit"> </i>Editar</a>
                             <a href="{{ route('subproceso.show', $item->sub_id) }}" class="btn btn-danger btn-sm"><i
@@ -59,6 +59,7 @@
                 @endforeach
             </tbody>
         </table>
+        {{$subproceso->links()}}
     </div>
 @endsection
 

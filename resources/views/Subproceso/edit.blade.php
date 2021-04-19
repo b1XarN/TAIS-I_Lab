@@ -35,7 +35,14 @@
                             </label>
                             <div class="col-md-6 col-sm-6 col-lg-8">
                                 <select id="proceso" name="proceso" class="form-control" required>
-                                    <option value="1">xd</option>
+                                    @foreach ($proceso as $item)
+                                        @if ($item->pro_id == $subproceso->pro_id)
+                                            <option selected value="{{ $item->pro_id }}">{{ $item->pro_nombre }}
+                                            </option>
+                                        @else
+                                            <option value="{{ $item->pro_id }}">{{ $item->pro_nombre }}</option>
+                                        @endif
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -63,7 +70,7 @@
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
                                 <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Actualizar</button>
-                                <a href="{{ route('cancelasubproceso', 12345678901) }}" class="btn btn-primary"
+                                <a href="{{ route('cancelasubproceso', $_SESSION['ruc']) }}" class="btn btn-primary"
                                     type="button"><i class="fa fa-ban"></i> Cancelar</a>
                             </div>
                         </div>

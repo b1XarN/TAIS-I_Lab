@@ -13,24 +13,7 @@
     <section>
       @yield('estilos')
     </section>
-    <!-- Bootstrap -->
-    <link href="gentelella-master/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="gentelella-master/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-    <!-- NProgress -->
-    <link href="gentelella-master/vendors/nprogress/nprogress.css" rel="stylesheet">
-    <!-- iCheck -->
-    <link href="gentelella-master/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-	
-    <!-- bootstrap-progressbar -->
-    <link href="gentelella-master/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-    <!-- JQVMap -->
-    <link href="gentelella-master/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet"/>
-    <!-- bootstrap-daterangepicker -->
-    <link href="gentelella-master/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
-    <!-- Custom Theme Style -->
-    <link href="gentelella-master/build/css/custom.min.css" rel="stylesheet">
   </head>
 
   <body class="nav-md">
@@ -58,9 +41,6 @@
 
             <br />
             @php
-
-              $_SESSION['ruc']='20548971111';
-
               if (!isset($_SESSION['ruc'])) {
                 $_SESSION['ruc'] = "ninguno";
               }
@@ -84,8 +64,8 @@
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Registrar informacion <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="{{ route('proceso.index', $_SESSION['ruc']) }}">Procesos</a></li>
-                      <li><a href="{{ route('subproceso.index', 12345678901) }}">Subprocesos</a></li>
+                      <li><a href="{{ route('proceso.show', $_SESSION['ruc']) }}">Procesos</a></li>
+                      <li><a href="{{ route('subproceso.index', $_SESSION['ruc']) }}">Subprocesos</a></li>
                       <li><a href="typography.html">Indicadores</a></li>
                       <li><a href="icons.html">Mapa estrategico</a></li>
                       <li><a href="glyphicons.html">Tableros de control</a></li>
@@ -290,47 +270,6 @@
         <!-- /footer content -->
       </div>
     </div>
-
-    <!-- jQuery -->
-    <script src="gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="gentelella-master/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- FastClick -->
-    <script src="gentelella-master/vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="gentelella-master/vendors/nprogress/nprogress.js"></script>
-    <!-- Chart.js -->
-    <script src="gentelella-master/vendors/Chart.js/dist/Chart.min.js"></script>
-    <!-- gauge.js -->
-    <script src="gentelella-master/vendors/gauge.js/dist/gauge.min.js"></script>
-    <!-- bootstrap-progressbar -->
-    <script src="gentelella-master/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-    <!-- iCheck -->
-    <script src="gentelella-master/vendors/iCheck/icheck.min.js"></script>
-    <!-- Skycons -->
-    <script src="gentelella-master/vendors/skycons/skycons.js"></script>
-    <!-- Flot -->
-    <script src="gentelella-master/vendors/Flot/jquery.flot.js"></script>
-    <script src="gentelella-master/vendors/Flot/jquery.flot.pie.js"></script>
-    <script src="gentelella-master/vendors/Flot/jquery.flot.time.js"></script>
-    <script src="gentelella-master/vendors/Flot/jquery.flot.stack.js"></script>
-    <script src="gentelella-master/vendors/Flot/jquery.flot.resize.js"></script>
-    <!-- Flot plugins -->
-    <script src="gentelella-master/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-    <script src="gentelella-master/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-    <script src="gentelella-master/vendors/flot.curvedlines/curvedLines.js"></script>
-    <!-- DateJS -->
-    <script src="gentelella-master/vendors/DateJS/build/date.js"></script>
-    <!-- JQVMap -->
-    <script src="gentelella-master/vendors/jqvmap/dist/jquery.vmap.js"></script>
-    <script src="gentelella-master/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-    <script src="gentelella-master/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-    <!-- bootstrap-daterangepicker -->
-    <script src="gentelella-master/vendors/moment/min/moment.min.js"></script>
-    <script src="gentelella-master/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-
-    <!-- Custom Theme Scripts -->
-    <script src="gentelella-master/build/js/custom.min.js"></script>
     <section>
       @yield('scripts')
     </section>

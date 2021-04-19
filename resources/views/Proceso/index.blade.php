@@ -13,21 +13,14 @@
 @section('contenido')
     @php
     session_start();
-    $_SESSION['ruc']='20548971111';
+    $_SESSION['ruc']=$empresa->emp_ruc;
     @endphp
-    <style>
-        table tr:hover {
-            background-color: whitesmoke;
-            cursor: pointer;
-        }
-
-    </style>
     <div class="container">
         <h2 class="text-center fs-3 fw-bolder">LISTA DE PROCESOS</h2>
-        <a href="{{route('proceso.create',$_SESSION['ruc'])}}" class="btn btn-primary"><i class="fas fa-plus"></i>Nuevo Registro</a>
+        <a href="{{route('proceso.create',$_SESSION['ruc'])}}" class="btn btn-primary"><i class="fa fa-plus-square-o"></i> Nuevo Registro</a>
         <form class="d-flex float-right">
-            <input name="buscarpor1" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" value="{{$buscarpor1}}">
-            <button name="buscar1" class="btn btn-success" type="submit" value="buscar1">Search</button>
+            <input name="buscarpor1" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" value="{{$buscarpor1}}">
+            <button name="buscar1" class="btn btn-success" type="submit" value="buscar1">Buscar</button>
         </form>
         @if (session('datos'))
             <div class="alert alert-warning alert-dismissible fade show mt3" role="alert">
@@ -41,9 +34,9 @@
             <thead>
                 <tr class="table-primary">
                     <th scope="col" class="text-center" style="width: 10px;">N°</th>
-                    <th scope="col">RUC</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Opciones</th>
+                    <th scope="col" class="text-center">RUC</th>
+                    <th scope="col" class="text-center">Nombre</th>
+                    <th scope="col" class="text-center" style="width: 200px;">Opciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,14 +47,12 @@
                     <tr>
                         <th class="align-middle" scope="row">{{ $int }}</th>
                         <td class="align-middle">{{ $item->emp_ruc }}</td>
-                        <td class="align-middle"><a
-                                href=""
-                                class="link-dark">{{ $item->pro_nombre }}</a></td>
+                        <td class="align-middle">{{ $item->pro_nombre }}</td>
                         <td class="align-middle">
                             <a href="{{route('proceso.edit',$item->pro_id)}}" class="btn btn-info btn-sm"><i
-                                    class="fas fa-edit"> </i>Editar</a>
+                                    class="fa fa-edit"></i>Editar</a>
                             <a href="{{route('proceso.confirmar',$item->pro_id)}}" class="btn btn-danger btn-sm"><i
-                                    class="fas fa-trash-alt"></i>Eliminar</a>
+                                    class="fa fa-trash"></i>Eliminar</a>
                         </td>
                     </tr>
                     @php
