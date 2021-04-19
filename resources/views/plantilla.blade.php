@@ -78,7 +78,7 @@
                   <li><a><i class="fa fa-desktop"></i> Registrar informacion <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="general_elements.html">Procesos</a></li>
-                      <li><a href="media_gallery.html">Subprocesos</a></li>
+                      <li><a href="{{ route('subproceso.index', 12345678901) }}">Subprocesos</a></li>
                       <li><a href="typography.html">Indicadores</a></li>
                       <li><a href="icons.html">Mapa estrategico</a></li>
                       <li><a href="glyphicons.html">Tableros de control</a></li>
