@@ -57,7 +57,14 @@
             <!-- /menu profile quick info -->
 
             <br />
+            @php
 
+              $_SESSION['ruc']='20548971111';
+
+              if (!isset($_SESSION['ruc'])) {
+                $_SESSION['ruc'] = "ninguno";
+              }
+            @endphp
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
@@ -77,7 +84,7 @@
                   </li>
                   <li><a><i class="fa fa-desktop"></i> Registrar informacion <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="general_elements.html">Procesos</a></li>
+                      <li><a href="{{ route('proceso.index', $_SESSION['ruc']) }}">Procesos</a></li>
                       <li><a href="{{ route('subproceso.index', 12345678901) }}">Subprocesos</a></li>
                       <li><a href="typography.html">Indicadores</a></li>
                       <li><a href="icons.html">Mapa estrategico</a></li>
