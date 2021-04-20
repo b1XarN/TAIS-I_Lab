@@ -9,7 +9,9 @@
 @endsection
     
 @section('contenido')
-   
+   @php
+    session_start();
+   @endphp
     <input type="hidden" id="objetivo" value="{{$indicador->ind_objetivo}}">
     <input type="hidden" id="nombre" value="{{$indicador->ind_nombre}}">
     <input type="hidden" id="meta" value="{{$indicador->ind_meta}}">
