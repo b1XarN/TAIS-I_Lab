@@ -75,8 +75,6 @@
                                                 href="{{ route('subproceso.index', $_SESSION['ruc']) }}">Subprocesos</a>
                                         </li>
                                         <li><a href="{{ route('indicador.index', $_SESSION['ruc']) }}">Indicadores</a>
-                                        </li>
-                                        <li><a href="icons.html">Mapa estrategico</a></li>
                                     </ul>
                                 </li>
                                 <li><a><i class="fa fa-table"></i> Reportes <span class="fa fa-chevron-down"></span></a>
