@@ -127,6 +127,9 @@ class IndicadorController extends Controller
     }
 
     public function matriz($id){
+        if (strcmp($id,"ninguno") === 0) {
+            return redirect()->route('empresa.index')->with('datos','Elija una empresa para trabajar');
+        }
         $empresa = Empresa::findOrFail($id);
         $proceso=Proceso::where('emp_ruc','=',$id)->get();
         $subproceso=Subproceso::where('emp_ruc','=',$id)->get();

@@ -25,7 +25,7 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form method="POST" action="{{ route('iniciativa.update', $iniciativa->ind_id) }}" id="demo-form2"
+                    <form method="POST" action="{{ route('iniciativa.update', $iniciativa->ini_id) }}" id="demo-form2"
                         data-parsley-validate class="form-horizontal form-label-left">
                         @method('put')
                         @csrf
