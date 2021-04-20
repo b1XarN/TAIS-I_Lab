@@ -71,3 +71,16 @@ Route::delete('iniciativa/{iniciativa}','IniciativaController@destroy')->name('i
 Route::get('cancelainiciativa/{ruc}', function($ruc){
     return redirect()->route('iniciativa.index', $ruc)->with('datos','Accion Cancelada');
 })->name('cancelainiciativa');
+
+//Estrategias
+Route::get('estrategiai/{sub_id}','EstrategiaController@index')->name('estrategia.index');
+Route::get('estrategiac/{sub_id}','EstrategiaController@create')->name('estrategia.create');
+Route::post('estrategias/{sub_id}','EstrategiaController@store')->name('estrategia.store');
+Route::get('estrategiash/{sub_id}','EstrategiaController@show')->name('estrategia.show');
+Route::get('estrategia/{est_id}/edit','EstrategiaController@edit')->name('estrategia.edit');
+Route::put('estrategiau/{est_id}','EstrategiaController@update')->name('estrategia.update');
+Route::delete('estrategiad/{est_id}','EstrategiaController@destroy')->name('estrategia.destroy');
+Route::get('cancelaestrategia/{est_id}', function($sub_id){
+    return redirect()->route('estrategia.index', $sub_id)->with('datos','Accion Cancelada');
+})->name('cancelaestrategia');
+

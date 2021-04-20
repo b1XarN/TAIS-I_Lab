@@ -13,8 +13,8 @@
     session_start();
     @endphp
     <div class="container">
-        <h2 class="text-center fs-3 fw-bolder">LISTA DE SUBPROCESOS</h2>
-        <a href="{{ route('subproceso.create', $_SESSION['ruc']) }}" class="btn btn-primary"><i class="fa fa-plus-square-o"></i> Nuevo Registro</a>
+        <h2 class="text-center fs-3 fw-bolder">Lista de Estrategias: {{$subproceso->sub_nombre}}</h2>
+        <a href="{{route('estrategia.create', $subproceso->sub_id)}}" class="btn btn-primary"><i class="fa fa-plus-square-o"></i> Nuevo Registro</a>
         <form class="d-flex float-right">
             <input name="buscarpor" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search"
                 value="{{ $buscarpor }}">
@@ -33,7 +33,7 @@
                 <tr class="table-primary">
                     <th scope="col" class="text-center" style="width: 10px;">N°</th>
                     <th scope="col" class="text-center">Descripción</th>
-                    <th scope="col" class="text-center">Responsable</th>
+                    <th scope="col" class="text-center">Perspectiva</th>
                     <th scope="col" class="text-center" style="width: 200px;">Opciones</th>
                 </tr>
             </thead>
@@ -41,18 +41,17 @@
                 @php
                     $int = 1;
                 @endphp
-                @foreach ($subproceso as $item)
+                @foreach ($estrategia as $item)
                     <tr>
-                        <th style="width:5%;" class="align-middle table-light text-center" scope="row">{{ $int }}</th>
-                        <td style="width:55%;" class="align-middle table-light text-break">{{ $item->sub_nombre }}</td>
-                        <td style="width:15%;" class="align-middle table-light text-break">{{ $item->sub_responsable }}</td>
-                        <td style="width:45%;" class="table-light">
-                            <a href="{{ route('subproceso.edit', $item->sub_id) }}" class="btn btn-info btn-sm"><i
+                        <th class="align-middle table-light text-center" scope="row">{{ $int }}</th>
+                        <td class="align-middle table-light text-break">{{ $item->est_nombre }}</td>
+                        <td class="align-middle table-light text-break">{{ $item->Perspectiva->per_nombre}}</td>
+                        <td class="table-light">
+                            <a href="{{ route('estrategia.edit', $item->est_id) }}" class="btn btn-info btn-sm"><i
                                     class="fa fa-edit"> </i>Editar</a>
-                            <a href="{{ route('subproceso.show', $item->sub_id) }}" class="btn btn-danger btn-sm"><i
+                            <a href="{{ route('estrategia.show', $item->est_id) }}" class="btn btn-danger btn-sm"><i
                                     class="fa fa-trash"></i>Eliminar</a>
-                            <a href="{{ route('estrategia.index', $item->sub_id) }}" class="btn btn-success btn-sm"><i
-                                    class="fa fa-check"></i>Estrategia</a>
+                            
                         </td>
                     </tr>
                     @php
@@ -61,7 +60,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{$subproceso->links()}}
+        {{ $estrategia->links() }}
     </div>
 @endsection
 
