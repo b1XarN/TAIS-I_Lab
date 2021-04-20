@@ -18,8 +18,8 @@
   <form method="POST" action="{{ route('proceso.destroy', $proceso->pro_id)}}">
     @method ('delete')
     @csrf
-    <button type="submit" class="btn btn-danger"><i class="fas fa-check-square"></i>SI</button>
-    <a href="{{route('cancelarproceso',$proceso->emp_ruc)}}" class="btn btn-primary" ><i class="fas fa-times-circle"> </button></i>NO</a>
+    <button type="submit" class="btn btn-danger"><i class="fa fa-check-square"></i>SI</button>
+    <a href="{{route('cancelarproceso',$proceso->emp_ruc)}}" class="btn btn-primary" ><i class="fa fa-times-circle"> </button></i>NO</a>
   </form>
 </div>
 @endsection

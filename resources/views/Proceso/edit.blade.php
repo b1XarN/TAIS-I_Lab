@@ -27,8 +27,8 @@
             </span>
         @enderror
       </div>
-      <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Grabar</button>
-      <a href="{{route('cancelarproceso',$proceso->emp_ruc)}}" class="btn btn-danger" ><i class="fas fa-ban"> </i>Cancelar</a>
+      <button type="submit" class="btn btn-primary"><i class="fa fa-save"></i> Grabar</button>
+      <a href="{{route('cancelarproceso',$proceso->emp_ruc)}}" class="btn btn-danger" ><i class="fa fa-ban"> </i>Cancelar</a>
   </form>
 </div>
 @endsection

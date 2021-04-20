@@ -18,7 +18,9 @@ Route::get('/', function () {
     return view('login');
 });
 Route::post('/','UsuarioController@login')->name('usuario.login');
-
+Route::get('/welcome', function (){
+    return view('welcome');
+});
 
 Route::resource('empresa','EmpresaController');
 Route::get('cancelarempresa', function(){
@@ -57,7 +59,7 @@ Route::get('indicador/{indicador}/edit','IndicadorController@edit')->name('indic
 Route::get('indicador/{id}','IndicadorController@matriz')->name('indicador.matriz');
 Route::get('indicadort/{id}','IndicadorController@tablero')->name('indicador.tablero');
 Route::put('indicador/{indicador}','IndicadorController@update')->name('indicador.update');
-Route::get('indicador/{indicador}','IndicadorController@show')->name('indicador.show');
+Route::get('indicadors/{indicador}','IndicadorController@show')->name('indicador.show');
 Route::delete('indicador/{indicador}','IndicadorController@destroy')->name('indicador.destroy');
 Route::get('cancelaindicador/{ruc}', function($ruc){
     return redirect()->route('indicador.index', $ruc)->with('datos','Accion Cancelada');
