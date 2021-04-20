@@ -1,100 +1,82 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('plantilla')
 
-        <title>Laravel</title>
+@section('estilos')
+    <link href="gentelella-master/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="gentelella-master/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="gentelella-master/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <link href="gentelella-master/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <link href="gentelella-master/build/css/custom.min.css" rel="stylesheet">
+@endsection
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
+@section('contenido')
+    @php
+    session_start();
+    if (isset($usuario)) {
+        $_SESSION['usuario_id'] = $usuario->usu_id;
+        $_SESSION['usuario_name'] = $usuario->usu_apellido.' '.$usuario->usu_nombre;
+    }
+    @endphp
+    <div>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100" src="/imagenes/1.jpg" alt="First slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Para cualquier emprendedor: si quieres hacerlo, hazlo ahora. Si no lo haces te vas a arrepentir
+                        </h5>
+                    </div>
                 </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="/imagenes/2.jpg" alt="Second slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>No es sobre las ideas. Sino hacer que éstas se vuelvan realidad</h5>
+                    </div>
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="carousel-item">
+                    <img class="d-block w-100" src="/imagenes/3.jpg" alt="Third slide">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Las ideas son fáciles, implementarlas es lo difícil</h5>
+                    </div>
                 </div>
             </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-custom-icon" aria-hidden="true">
+                    <i class="fa fa-chevron-left"></i>
+                </span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-custom-icon" aria-hidden="true">
+                    <i class="fa fa-chevron-right"></i>
+                </span>
+                <span class="sr-only">Next</span>
+            </a>
         </div>
-    </body>
-</html>
+    </div>
+@endsection
+
+@section('scripts')
+    <script src="gentelella-master/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="gentelella-master/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="gentelella-master/vendors/fastclick/lib/fastclick.js"></script>
+    <script src="gentelella-master/vendors/nprogress/nprogress.js"></script>
+    <script src="gentelella-master/vendors/Chart.js/dist/Chart.min.js"></script>
+    <script src="gentelella-master/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <script src="gentelella-master/vendors/Flot/jquery.flot.js"></script>
+    <script src="gentelella-master/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="gentelella-master/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="gentelella-master/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="gentelella-master/vendors/Flot/jquery.flot.resize.js"></script>
+    <script src="gentelella-master/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="gentelella-master/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="gentelella-master/vendors/flot.curvedlines/curvedLines.js"></script>
+    <script src="gentelella-master/vendors/DateJS/build/date.js"></script>
+    <script src="gentelella-master/vendors/moment/min/moment.min.js"></script>
+    <script src="gentelella-master/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="gentelella-master/build/js/custom.min.js"></script>
+@endsection

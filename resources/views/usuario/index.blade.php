@@ -12,15 +12,8 @@
     @php
     session_start();
     @endphp
-    <style>
-        table tr:hover {
-            background-color: whitesmoke;
-            cursor: pointer;
-        }
-
-    </style>
     <div class="container">
-        <h2 class="text-center fs-3 fw-bolder">LISTA DE EMPRESAS</h2>
+        <h2 class="text-center fs-3 fw-bolder">LISTA DE USUARIOS</h2>
         @if (session('datos'))
             <div class="alert alert-warning alert-dismissible fade show mt3" role="alert">
                 {{ session('datos') }}
@@ -33,9 +26,8 @@
             <thead>
                 <tr class="table-primary">
                     <th scope="col" class="text-center" style="width: 10px;">N°</th>
-                    <th scope="col" class="text-center" style="width: 200px;">RUC</th>
-                    <th scope="col" class="text-center">Nombre</th>
-                    <th scope="col" class="text-center">Direccion</th>
+                    <th scope="col" class="text-center" style="width: 200px;">DNI</th>
+                    <th scope="col" class="text-center">Apellidos y Nombres</th>
                     <th scope="col" class="text-center" style="width: 200px;">Opciones</th>
                 </tr>
             </thead>
@@ -43,15 +35,14 @@
                 @php
                     $int = 1;
                 @endphp
-                @foreach ($empresa as $itemempresa)
+                @foreach ($usuario as $item)
                     <tr>
                         <th class="align-middle" scope="row">{{ $int }}</th>
-                        <td class="align-middle">{{ $itemempresa->emp_ruc }}</td>
-                        <td class="align-middle"><a href="{{ route('proceso.show', $itemempresa->emp_ruc) }}" class="link-dark">{{ $itemempresa->emp_nombre }}</a></td>
-                        <td class="align-middle">{{ $itemempresa->emp_direccion }}</td>
+                        <td class="align-middle">{{ $item->usu_dni }}</td>
+                        <td class="align-middle">{{ $item->usu_apellido }} {{ $item->usu_nombre }}</a></td>
                         <td class="align-middle">
-                            <a href="{{route('empresa.edit',$itemempresa->emp_ruc)}}" class="btn btn-info btn-sm"><i class="fa fa-edit"> </i>Editar</a>
-                            <a href="{{route('empresa.show',$itemempresa->emp_ruc)}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Eliminar</a>
+                            <a href="{{route('usuario.edit', $item->usu_id)}}" class="btn btn-info btn-sm"><i class="fa fa-edit"> </i>Editar</a>
+                            <a href="{{route('usuario.show', $item->usu_id)}}" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i>Eliminar</a>
                         </td>
                     </tr>
                     @php

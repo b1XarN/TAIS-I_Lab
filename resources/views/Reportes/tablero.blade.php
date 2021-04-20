@@ -32,7 +32,7 @@
     <script src="../gentelella-master/vendors/fastclick/lib/fastclick.js"></script>
     <script src="../gentelella-master/vendors/nprogress/nprogress.js"></script>
     <script src="../gentelella-master/vendors/Chart.js/dist/Chart.min.js"></script>
-    <script src="../../vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <script src="../gentelella-master/vendors/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
     <script src="../gentelella-master/vendors/Flot/jquery.flot.js"></script>
     <script src="../gentelella-master/vendors/Flot/jquery.flot.pie.js"></script>
     <script src="../gentelella-master/vendors/Flot/jquery.flot.time.js"></script>

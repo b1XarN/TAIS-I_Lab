@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // return view('welcome');
-    return view('plantilla');
+    //return view('welcome');
+    return view('login');
 });
+Route::post('/','UsuarioController@login')->name('usuario.login');
+
+
 Route::resource('empresa','EmpresaController');
 Route::get('cancelarempresa', function(){
     return redirect()->route('empresa.index')->with('datos','Accion Cancelada');
@@ -84,3 +87,9 @@ Route::get('cancelaestrategia/{est_id}', function($sub_id){
     return redirect()->route('estrategia.index', $sub_id)->with('datos','Accion Cancelada');
 })->name('cancelaestrategia');
 
+//Usuario
+Route::resource('usuario', 'UsuarioController');
+Route::get('cancelarusuario', function(){
+    return redirect()->route('usuario.index')->with('datos','Accion Cancelada');
+})->name('cancelarusuario');
+Route::get('usuario/{usuario_id}/confirmar','UsuarioController@confirmar')->name('usuario.confirmar');
