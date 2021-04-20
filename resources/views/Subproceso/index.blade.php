@@ -44,7 +44,7 @@
                 @foreach ($subproceso as $item)
                     <tr>
                         <th style="width:5%;" class="align-middle table-light text-center" scope="row">{{ $int }}</th>
-                        <td style="width:55%;" class="align-middle table-light text-break">{{ $item->sub_nombre }}</td>
+                        <td style="width:55%;" class="align-middle table-light text-break"><a href="{{route('estrategia.mapa', $item->sub_id)}}">{{ $item->sub_nombre }}</a></td>
                         <td style="width:15%;" class="align-middle table-light text-break">{{ $item->sub_responsable }}</td>
                         <td style="width:45%;" class="table-light">
                             <a href="{{ route('subproceso.edit', $item->sub_id) }}" class="btn btn-info btn-sm"><i

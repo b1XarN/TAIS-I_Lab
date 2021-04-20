@@ -107,4 +107,15 @@ class EstrategiaController extends Controller
         $estrategia->delete();
         return redirect()->route('estrategia.index', $estrategia->sub_id)->with('datos','Estrategia eliminada');
     }
+
+    public function mapa($id){
+
+        $subproceso = Subproceso::where('sub_id', '=', $id);
+        $estrategiaP1 = Estrategia::where('per_id', '=', 1)->where('sub_id', '=', $id)->get();
+        $estrategiaP2 = Estrategia::where('per_id', '=', 2)->where('sub_id', '=', $id)->get();
+        $estrategiaP3 = Estrategia::where('per_id', '=', 3)->where('sub_id', '=', $id)->get();
+        $estrategiaP4 = Estrategia::where('per_id', '=', 4)->where('sub_id', '=', $id)->get();
+
+        return view('reportes.mapa', compact('subproceso', 'estrategiaP1', 'estrategiaP2', 'estrategiaP3', 'estrategiaP4'));
+    }
 }

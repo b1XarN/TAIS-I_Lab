@@ -61,6 +61,7 @@
         let responsable = document.getElementById('responsable').value;
         
         let nombre2 = nombre.substring(29, nombre.length);
+        let objetivo2 = objetivo.substring(17, objetivo.length);
         console.log('ayayayayayayaya');
         console.log(nombre2);
         console.log('ayayayayayayaya');
@@ -95,7 +96,12 @@
         c.font="18px Verdana";
         c.fillText('Objetivo',253,275,1000);
         c.font="16px Times New Roman";
-        c.fillText(objetivo,243,310,1000);
+        if(objetivo2 != ""){
+            c.fillText(objetivo.substring(0,17),229,303,1000);
+            c.fillText(objetivo2,229,316,1000 )
+        }else{
+            c.fillText(nombre,229,303,1000);
+        }
         c.arc(70+x,300,60,0, Math.PI * 2, false);
         c.strokeStyle = 'black';
         c.stroke();

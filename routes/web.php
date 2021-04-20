@@ -81,6 +81,7 @@ Route::get('estrategiac/{sub_id}','EstrategiaController@create')->name('estrateg
 Route::post('estrategias/{sub_id}','EstrategiaController@store')->name('estrategia.store');
 Route::get('estrategiash/{sub_id}','EstrategiaController@show')->name('estrategia.show');
 Route::get('estrategia/{est_id}/edit','EstrategiaController@edit')->name('estrategia.edit');
+Route::get('estrategiat/{sub_id}','EstrategiaController@mapa')->name('estrategia.mapa');
 Route::put('estrategiau/{est_id}','EstrategiaController@update')->name('estrategia.update');
 Route::delete('estrategiad/{est_id}','EstrategiaController@destroy')->name('estrategia.destroy');
 Route::get('cancelaestrategia/{est_id}', function($sub_id){
