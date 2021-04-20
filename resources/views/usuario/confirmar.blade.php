@@ -14,21 +14,12 @@
   session_start();
 @endphp
 <div class="container">
-  <h1>Modificar Proceso</h1>
-  <form method="POST" action="{{route('proceso.update', $proceso->pro_id)}}">
-      @method('put')  
-      @csrf
-      <div class="form-group">
-        <label for="pro_nombre">Nombre</label>
-        <input type="text" class="form-control @error('pro_nombre') is-invalid @enderror" id="pro_nombre" name="pro_nombre" placeholder="Nombre" value="{{$proceso->pro_nombre}}">
-        @error('pro_nombre')
-            <span class="invalid-feedback" role="alert">
-              <strong>{{$message}}</strong>
-            </span>
-        @enderror
-      </div>
-      <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Grabar</button>
-      <a href="{{route('cancelarproceso',$proceso->emp_ruc)}}" class="btn btn-danger" ><i class="fas fa-ban"> </i>Cancelar</a>
+  <h3>¿Desea eliminar al usuario {{$usuario->usu_id}} ?</h3>
+  <form method="POST" action="{{ route('usuario.destroy', $usuario->usu_id)}}">
+    @method ('delete')
+    @csrf
+    <button type="submit" class="btn btn-danger"><i class="fa fa-check-square"></i> SI</button>
+    <a href="{{route('cancelarusuario')}}" class="btn btn-primary" ><i class="fa fa-times-circle"></button></i> NO</a>
   </form>
 </div>
 @endsection

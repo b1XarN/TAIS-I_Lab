@@ -14,9 +14,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // return view('welcome');
-    return view('plantilla');
+    //return view('welcome');
+    return view('login');
 });
+Route::post('/','UsuarioController@login')->name('usuario.login');
+
+
 Route::resource('empresa','EmpresaController');
 Route::get('cancelarempresa', function(){
     return redirect()->route('empresa.index')->with('datos','Accion Cancelada');
@@ -71,3 +74,10 @@ Route::delete('iniciativa/{iniciativa}','IniciativaController@destroy')->name('i
 Route::get('cancelainiciativa/{ruc}', function($ruc){
     return redirect()->route('iniciativa.index', $ruc)->with('datos','Accion Cancelada');
 })->name('cancelainiciativa');
+
+//Usuario
+Route::resource('usuario', 'UsuarioController');
+Route::get('cancelarusuario', function(){
+    return redirect()->route('usuario.index')->with('datos','Accion Cancelada');
+})->name('cancelarusuario');
+Route::get('usuario/{usuario_id}/confirmar','UsuarioController@confirmar')->name('usuario.confirmar');

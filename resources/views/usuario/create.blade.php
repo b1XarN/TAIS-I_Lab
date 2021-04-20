@@ -16,7 +16,7 @@
         <div class="col-md-12 col-sm-12 ">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Registrar una empresa</h2>
+                    <h2>Registrar una usuario</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -25,27 +25,36 @@
                 </div>
                 <div class="x_content">
                     <br />
-                    <form method="POST" action="{{ route('empresa.store') }}" id="demo-form2" data-parsley-validate
+                    <form method="POST" action="{{ route('usuario.store') }}" id="demo-form2" data-parsley-validate
                         class="form-horizontal form-label-left">
                         @csrf
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 col-lg-2 label-align" for="first-name">Nombre
+                            <label class="col-form-label col-md-3 col-sm-3 col-lg-2 label-align" for="first-name">Nombres
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-lg-8">
-                                <input type="text" id="nombre" name="nombre" required="nombre" class="form-control"
-                                    value="{{ old('nombre') }}">
+                                <input type="text" id="nombres" name="nombres" required="required" class="form-control"
+                                    value="{{ old('nombres') }}">
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 col-lg-2 label-align" for="first-name">RUC
+                            <label class="col-form-label col-md-3 col-sm-3 col-lg-2 label-align" for="first-name">Apellidos
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-lg-8">
-                                <input type="text" id="RUC" name="RUC" required="RUC"
-                                    class="form-control @error('RUC') is-invalid @enderror" value="{{ old('RUC') }}"
+                                <input type="text" id="apellidos" name="apellidos" required="required" class="form-control"
+                                    value="{{ old('apellidos') }}">
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 col-lg-2 label-align" for="first-name">DNI
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-lg-8">
+                                <input type="text" id="DNI" name="DNI" required="DNI"
+                                    class="form-control @error('DNI') is-invalid @enderror" value="{{ old('DNI') }}"
                                     onkeypress="return soloNumeros(event)">
-                                @error('RUC')
+                                @error('DNI')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -53,14 +62,29 @@
                             </div>
                         </div>
                         <div class="item form-group">
-                            <label class="col-form-label col-md-3 col-sm-3 col-lg-2 label-align" for="last-name">Dirección
+                            <label class="col-form-label col-md-3 col-sm-3 col-lg-2 label-align" for="last-name">Usuario
                                 <span class="required">*</span>
                             </label>
                             <div class="col-md-6 col-sm-6 col-lg-8">
-                                <input type="text" id="direccion" name="direccion" required="direccion"
-                                    class="form-control @error('direccion') is-invalid @enderror"
-                                    value="{{ old('direccion') }}">
-                                @error('direccion')
+                                <input type="text" id="usuario" name="usuario" required="requied"
+                                    class="form-control @error('usuario') is-invalid @enderror"
+                                    value="{{ old('usuario') }}">
+                                @error('usuario')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="item form-group">
+                            <label class="col-form-label col-md-3 col-sm-3 col-lg-2 label-align" for="last-name">Contraseña
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-lg-8">
+                                <input type="password" id="contraseña" name="contraseña" required="requied"
+                                    class="form-control @error('contraseña') is-invalid @enderror"
+                                    value="{{ old('contraseña') }}">
+                                @error('contraseña')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -71,7 +95,7 @@
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
                                 <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Registrar</button>
-                                <a href="{{ route('cancelarempresa') }}" class="btn btn-primary" type="button"><i
+                                <a href="{{ route('cancelarusuario') }}" class="btn btn-primary" type="button"><i
                                         class="fa fa-ban"></i> Cancelar</a>
                             </div>
                         </div>
@@ -98,9 +122,9 @@
             if (letras.indexOf(tecla) == -1 && !tecla_especial) {
                 return false;
             }
-            var val = document.getElementById("RUC").value;
+            var val = document.getElementById("DNI").value;
             var tam = val.length;
-            if (tam == 11) {
+            if (tam == 8) {
                 return false;
             }
         }
