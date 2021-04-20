@@ -61,7 +61,7 @@
                         <div class="item form-group">
                             <div class="col-md-6 col-sm-6 offset-md-3">
                                 <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Registrar</button>
-                                <a href="" class="btn btn-primary"
+                                <a href="{{ route('cancelaestrategia', $estrategia->sub_id) }}" class="btn btn-primary"
                                     type="button"><i class="fa fa-ban"></i> Cancelar</a>
                             </div>
                         </div>

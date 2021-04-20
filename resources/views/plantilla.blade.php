@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="gentelella-master/images/favicon.ico" type="image/ico" />
 
-    <title>Gentelella Alela! | </title>
+    <title>TAIS 1</title>
 
     <section>
         @yield('estilos')
@@ -23,8 +23,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Gentelella
-                                Alela!</span></a>
+                        <a href="{{ URL::to('/welcome') }}" class="site_title"><i class="fa fa-paw"></i> <span>TAIS I</span></a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -84,7 +83,6 @@
                                     <ul class="nav child_menu">
                                         <li><a href="{{ route('indicador.matriz', $_SESSION['ruc']) }}">Matriz de
                                                 Indicadores</a></li>
-                                        <li><a href="tables_dynamic.html">Table Dynamic</a></li>
                                     </ul>
                                 </li>
                             </ul>
